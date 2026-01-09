@@ -1,3 +1,4 @@
+![License](https://img.shields.io/github/license/evdk25-wq/Barbossa-Scan)
 BARBOSSA SCAN v1.0 BY JLVDK95
 
 PIRATE SECURITY TOOL FOR LINUX
