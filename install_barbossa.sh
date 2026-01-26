@@ -16,12 +16,12 @@ echo "# | __ )  / \  |  _ \| __ ) / _ \/ ___|/ ___|  / \           #"
 echo "# |  _ \ / _ \ | |_) |  _ \| | | \___ \\___ \ / _ \          #"
 echo "# | |_) / ___ \|  _ <| |_) | |_| |___) |___) / ___ \         #"
 echo "# |____/_/   \_\_| \_\____/ \___/|____/|____/_/   \_\        #"
-echo "#  BY JLVDK95                                                #"
+echo "#  BY JLVDK95 V1.1                                           #"
 echo "##############################################################"
 echo -e "${NC}"
 
 echo -e "${RED}"
-echo "              Wait for it, Captain...           "
+echo "              Wait for it, Captain...        "
 sleep 0.3
 echo "                    ______             "
 echo "                 .-'      '-.          "
@@ -30,22 +30,29 @@ echo "               |              |        "
 echo "               |,  .-.  .-.  ,|        "
 echo "               | )(__/  \__)( |        "
 echo "               |/     /\     \|        "
-echo "             (_       ^^      _)       "
+echo "              (_      ^^     _ )       "
 echo "                \__|IIIIII|__/         "
 echo "                 | \IIIIII/ |          "
 echo "                  \________/           "
 echo -e "${NC}"
-echo -e "${YELLOW}               INSTALLING BARBOSSA...${NC}"
+echo -e "${YELLOW}                INSTALLING BARBOSSA...${NC}"
 sleep 1
 
 echo -e "${CYAN}-------------------------------------------------------${NC}"
 echo -e "${GREEN}>>> LOADING CANNONS (Installing software...)${NC}"
 sudo apt update && sudo apt install -y clamav rkhunter konsole
 
+# Correction du bug freshclam : on arrête le daemon pour la mise à jour initiale
+echo -e "${GREEN}>>> CALMING THE SEA (Fixing freshclam lock...)${NC}"
+sudo systemctl stop clamav-freshclam 2>/dev/null
+sudo freshclam
+sudo systemctl start clamav-freshclam 2>/dev/null
+
 echo -e "${GREEN}>>> PREPARING THE CABIN (Creating folders...)${NC}"
 mkdir -p "$HOME/.local/share/barbossa"
 
 echo -e "${GREEN}>>> SECURING THE LOOT (Copying files...)${NC}"
+# On s'assure que les fichiers sont copiés depuis votre dossier actuel
 cp ./scan_securite.sh "$HOME/.local/share/barbossa/"
 cp ./pirate.svg "$HOME/.local/share/barbossa/"
 chmod +x "$HOME/.local/share/barbossa/scan_securite.sh"
