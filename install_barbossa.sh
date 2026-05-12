@@ -40,13 +40,16 @@ sleep 1
 
 echo -e "${CYAN}-------------------------------------------------------${NC}"
 echo -e "${GREEN}>>> LOADING CANNONS (Installing software...)${NC}"
-sudo apt update && sudo apt install -y clamav rkhunter konsole
+sudo apt update && sudo apt install -y clamav clamav-daemon rkhunter konsole
 
 # Correction du bug freshclam : on arrête le daemon pour la mise à jour initiale
 echo -e "${GREEN}>>> CALMING THE SEA (Fixing freshclam lock...)${NC}"
 sudo systemctl stop clamav-freshclam 2>/dev/null
 sudo freshclam
 sudo systemctl start clamav-freshclam 2>/dev/null
+
+echo -e "${GREEN}>>> WAKING THE KRAKEN (Starting ClamAV daemon...)${NC}"
+sudo systemctl enable --now clamav-daemon 2>/dev/null
 
 echo -e "${GREEN}>>> PREPARING THE CABIN (Creating folders...)${NC}"
 mkdir -p "$HOME/.local/share/barbossa"
