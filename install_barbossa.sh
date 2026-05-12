@@ -42,7 +42,7 @@ echo -e "${CYAN}-------------------------------------------------------${NC}"
 echo -e "${GREEN}>>> LOADING CANNONS (Installing software...)${NC}"
 sudo apt update && sudo apt install -y clamav clamav-daemon rkhunter konsole
 
-# Correction du bug freshclam : on arrête le daemon pour la mise à jour initiale
+
 echo -e "${GREEN}>>> CALMING THE SEA (Fixing freshclam lock...)${NC}"
 sudo systemctl stop clamav-freshclam 2>/dev/null
 sudo freshclam
